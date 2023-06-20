@@ -1,6 +1,6 @@
 # Start from the code-server Debian base image
 FROM codercom/code-server:4.9.0
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN sudo rm /bin/sh && ln -s /bin/bash /bin/sh
 
 USER coder
 
