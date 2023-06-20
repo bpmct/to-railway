@@ -29,14 +29,28 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # Install apt packages:
 # RUN sudo apt-get install -y ubuntu-make
 
+RUN apt-get update
+RUN apt-get install -y --force-yes build-essential curl git
+RUN apt-get install -y --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev
+RUN apt-get clean
+
+# Install rbenv and ruby-build
+RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv
+RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build
+RUN /root/.rbenv/plugins/ruby-build/install.sh
+ENV PATH /root/.rbenv/bin:$PATH
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh # or /etc/profile
+RUN echo 'eval "$(rbenv init -)"' >> .bashrc
+
 # Install rbenv and dependencies
-RUN sudo apt-get install  -y git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
-RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-# SHELL ["~/.bashrc", "-c"]
-# RUN type rbenv
-RUN ~/.bashrc/bin/rbenv install 3.2.2
+RUN sudo apt-get install  -y git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-devRUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv
+RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build
+RUN /root/.rbenv/plugins/ruby-build/install.sh
+ENV PATH /root/.rbenv/bin:$PATH
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh # or /etc/profile
+RUN echo 'eval "$(rbenv init -)"' >> .bashrc
+
+RUN rbenv install 3.2.2
 
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
