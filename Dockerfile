@@ -38,7 +38,7 @@ RUN rbenv install 2.4.2
 # -----------
 
 # Port
-ENV PORT=8080
+ENV PORT=3000
 
 # Use our custom entrypoint script first
 COPY deploy-container/entrypoint.sh /usr/bin/deploy-container-entrypoint.sh
