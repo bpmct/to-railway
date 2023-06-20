@@ -1,6 +1,5 @@
 # Start from the code-server Debian base image
 FROM codercom/code-server:4.9.0
-RUN sudo rm /bin/sh && ln -s /bin/bash /bin/sh
 
 USER coder
 
@@ -35,7 +34,7 @@ RUN sudo apt-get install  -y git curl libssl-dev libreadline-dev zlib1g-dev auto
 RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
 RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-RUN source ~/.bashrc
+# RUN source ~/.bashrc
 RUN type rbenv
 RUN rbenv install 3.2.2
 
