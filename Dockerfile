@@ -34,7 +34,7 @@ RUN sudo apt-get install  -y git curl libssl-dev libreadline-dev zlib1g-dev auto
 RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
 RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-# RUN source ~/.bashrc
+SHELL ["~/.bashrc", "-c"]
 RUN type rbenv
 RUN rbenv install 3.2.2
 
