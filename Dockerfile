@@ -36,7 +36,7 @@ RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 
 
-# RUN source ~/.bashrc
+RUN bash ~/.bashrc
 # RUN type rbenv
 # RUN rbenv install 3.2.2
 
