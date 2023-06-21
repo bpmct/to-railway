@@ -37,8 +37,8 @@ RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 
 
 RUN bash ~/.bashrc
-# RUN type rbenv
-# RUN rbenv install 3.2.2
+RUN type rbenv
+RUN rbenv install 3.2.2
 
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
