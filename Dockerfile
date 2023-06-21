@@ -35,10 +35,7 @@ RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-insta
 RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 
-
-RUN bash ~/.bashrc
-RUN type rbenv
-RUN rbenv install 3.2.2
+RUN ~/.rbenv/bin/rbenv install 3.2.2
 
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
