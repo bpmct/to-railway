@@ -44,7 +44,6 @@ RUN export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 RUN nvm install --lts && nvm use --lts && nvm install-latest-npm 
 RUN npm install --global yarn
 
-
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
 
