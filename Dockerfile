@@ -39,14 +39,17 @@ RUN ~/.rbenv/bin/rbenv install 3.2.2
 
 
 # Install nvm and dependencies
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-RUN nvm install --lts && nvm use --lts && nvm install-latest-npm 
-RUN npm install --global yarn
+RUN mkdir /usr/local/nvm
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 18.16.1
+RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 
-# Copy files: 
-# COPY deploy-container/myTool /home/coder/myTool
-
-# -----------
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 # Port
 ENV PORT=3000
