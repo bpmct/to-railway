@@ -37,6 +37,14 @@ RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 
 RUN ~/.rbenv/bin/rbenv install 3.2.2
 
+
+# Install nvm and dependencies
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+RUN export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+RUN nvm install --lts && nvm use --lts && nvm install-latest-npm 
+RUN npm install --global yarn
+
+
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
 
