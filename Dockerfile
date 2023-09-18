@@ -39,10 +39,18 @@ RUN ~/.rbenv/bin/rbenv install 3.2.2
 
 
 # Installing Node
-SHELL ["/bin/bash", "--login", "-i", "-c"]
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-RUN source /root/.bashrc && nvm install 12.14.1
-SHELL ["/bin/bash", "--login", "-c"]
+ENV NVM_DIR /usr/local/nvm # or ~/.nvm , depending
+ENV NODE_VERSION 0.10.33
+
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
+
 
 # Port
 ENV PORT=3000
