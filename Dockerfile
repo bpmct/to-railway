@@ -38,18 +38,11 @@ RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 RUN ~/.rbenv/bin/rbenv install 3.2.2
 
 
-# Install nvm and dependencies
-RUN mkdir /usr/local/nvm
-ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 18.16.1
-RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
-    && . $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
-
-ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+# Installing Node
+SHELL ["/bin/bash", "--login", "-i", "-c"]
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+RUN source /root/.bashrc && nvm install 12.14.1
+SHELL ["/bin/bash", "--login", "-c"]
 
 # Port
 ENV PORT=3000
