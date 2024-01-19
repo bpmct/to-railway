@@ -39,16 +39,20 @@ RUN ~/.rbenv/bin/rbenv install 3.2.2
 
 
 # Installing Node
-# ENV NVM_DIR /home/coder/.nvm
-# ENV NODE_VERSION 20.5.0
+ENV NVM_DIR /home/coder/.nvm
+ENV NODE_VERSION 20.5.0
 
-# RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh | bash 
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh | bash 
 
-# ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-# ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
 
 RUN sudo apt-get install -y nodejs
 RUN sudo apt-get install -y npm
+RUN sudo apt-get update
+RUN sudo apt-get upgrade -y nodejs npm
+
+RUN git config --global user.email "lgunn4@uwo.ca" && git config --global user.name "Logan Gunn"
 
 
 # Port
