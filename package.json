@@ -10,5 +10,8 @@
   },
   "lint-staged": {
     "./cli/*.{js,css,md}": "yarn cli:format"
+  },
+  "dependencies": {
+    "n": "^9.2.0"
   }
 }

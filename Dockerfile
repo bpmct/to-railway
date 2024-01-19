@@ -50,7 +50,7 @@ ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
 RUN sudo apt-get install -y nodejs npm
 RUN sudo apt-get update && sudo apt-get upgrade -y nodejs npm
 RUN sudo npm install n
-RUN n latest
+RUN sudo n latest
 
 RUN git config --global user.email "lgunn4@uwo.ca" && git config --global user.name "Logan Gunn"
 
