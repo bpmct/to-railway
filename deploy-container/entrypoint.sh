@@ -20,7 +20,7 @@ if [[ -z "${RCLONE_DATA}" ]]; then
 
 else
     echo "[$PREFIX] Copying rclone config..."
-    mkdir -p /home/coder/.config/rclone/
+    mkdir -p /home/coder/`.config/`rclone/
     touch /home/coder/.config/rclone/rclone.conf
     echo $RCLONE_DATA | base64 -d > /home/coder/.config/rclone/rclone.conf
 

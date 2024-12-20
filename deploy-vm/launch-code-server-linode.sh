@@ -30,10 +30,9 @@ sudo hostnamectl set-hostname linode-$LINODE_ID
 source /root/.bashrc
 
 # configure code-server to use --link with the "coder" user
-mkdir -p /home/coder/.config/code-server
-touch /home/coder/.config/code-server/config.yaml
-echo "link: true" > /home/coder/.config/code-server/config.yaml
-chown -R coder:coder /home/coder/.config
+if [[ ! -d /home/coder/.config/code-server ]]; then
+    echo "NO config has been set; please set a config file at /home/coder/.config/code-server"
+fi
 
 # start and enable code-server and our helper service
 systemctl enable code-server@coder
